@@ -1,0 +1,390 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel {
+  background: var(--bg);
+  width: 420px;
+  max-width: 90vw;
+  max-height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 1px solid var(--divider);
+  padding: 1.5rem;
+  position: relative;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-family: var(--font-data);
+  font-size: 1.2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text);
+  opacity: 0.4;
+  padding: 0.25rem;
+}
+
+.close:hover {
+  opacity: 0.8;
+}
+
+.calLabel {
+  font-family: var(--font-data);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.calDot {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--divider);
+  margin: 1rem 0;
+}
+
+.row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+}
+
+.rowLabel {
+  font-family: var(--font-data);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  min-width: 60px;
+}
+
+.rowValue {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+}
+
+.confLink {
+  font-family: var(--font-data);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--accent);
+}
+
+.confLink:hover {
+  text-decoration: underline;
+}
+
+/* ── Create form ──────────────────────────── */
+.formGroup {
+  margin-bottom: 0.6rem;
+}
+
+.formLabel {
+  font-family: var(--font-data);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.formInput {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  width: 100%;
+  padding: 0.4rem 0;
+  border: none;
+  border-bottom: 1px solid var(--divider);
+  background: transparent;
+  color: var(--text);
+  outline: none;
+}
+
+.formInput:focus {
+  border-bottom-color: var(--accent);
+}
+
+.formTextarea {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  width: 100%;
+  padding: 0.4rem 0;
+  border: none;
+  border-bottom: 1px solid var(--divider);
+  background: transparent;
+  color: var(--text);
+  outline: none;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.formTextarea:focus {
+  border-bottom-color: var(--accent);
+}
+
+/* ── Custom select dropdown ──────────────── */
+.customSelect {
+  position: relative;
+  width: 100%;
+}
+
+.selectTrigger {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  width: 100%;
+  padding: 0.4rem 0;
+  border: none;
+  border-bottom: 1px solid var(--divider);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.selectValue {
+  flex: 1;
+}
+
+.selectDot {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.selectDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--bg);
+  border: 1px solid var(--divider);
+  z-index: 300;
+  margin-top: 2px;
+}
+
+.selectOption {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  padding: 0.5rem 0.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.selectOption:hover {
+  background: color-mix(in srgb, var(--text) 5%, var(--bg));
+}
+
+.selectOptionActive {
+  font-weight: 600;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.submitBtn {
+  font-family: var(--font-data);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--text);
+  color: var(--bg);
+  border: 1px solid var(--text);
+  padding: calc(0.6rem - 1px) 1.5rem;
+  cursor: pointer;
+  width: 6rem;
+  text-align: center;
+  margin-left: auto;
+  display: block;
+}
+
+.deleteBtn {
+  font-family: var(--font-data);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: none;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: calc(0.6rem - 1px) 1.5rem;
+  cursor: pointer;
+  width: 6rem;
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.agentLabel {
+  font-family: var(--font-data);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-left: auto;
+}
+
+.agentLabelInline {
+  font-family: var(--font-data);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-left: 0.5rem;
+}
+
+.createTitleInput {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  width: 100%;
+  padding: 0.2rem 0;
+  border: none;
+  border-bottom: 1px solid var(--divider);
+  background: none;
+  color: var(--text);
+  outline: none;
+  margin-bottom: 0.6rem;
+}
+
+.createTitleInput:focus {
+  border-bottom-color: var(--accent);
+}
+
+.createTitleInput::placeholder {
+  color: var(--text);
+  opacity: 0.25;
+}
+
+.allDayToggle {
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  opacity: 0.6;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.linkPreview {
+  font-family: var(--font-data);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  text-decoration: none;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.linkPreview:hover {
+  text-decoration: underline;
+}
+
+.moreToggle {
+  font-family: var(--font-data);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  opacity: 0.35;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.3rem 0;
+  margin-bottom: 0.8rem;
+  transition: opacity 0.15s;
+}
+
+.moreToggle:hover {
+  opacity: 0.6;
+}
+
+/* ── Mobile ── */
+@media (max-width: 767px) {
+  .panel {
+    width: 100%;
+    max-width: 100vw;
+    max-height: 90vh;
+    padding: 1.5rem 1rem;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    /* Align to bottom of screen for thumb-friendliness */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+  }
+  .panel::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 4px;
+    background: var(--divider);
+    border-radius: 2px;
+    margin: 0 auto 1rem auto;
+  }
+  .overlay {
+    align-items: flex-end;
+  }
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+}

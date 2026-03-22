@@ -1,0 +1,76 @@
+/* ── Book Tabs (left edge, fixed) ─────────────────── */
+.tabContainer {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 40;
+}
+
+.tab {
+  width: 22px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: var(--font-data);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 1px solid rgba(139, 58, 42, 0.25);
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  background: var(--bg);
+  color: var(--accent);
+  transition: all 0.25s ease;
+  position: relative;
+  padding: 0;
+}
+
+.tab:hover {
+  background: rgba(139, 58, 42, 0.06);
+  width: 26px;
+}
+
+.tabActive {
+  composes: tab;
+  background: var(--accent);
+  color: #FEFCF8;
+  border-color: var(--accent);
+  width: 26px;
+}
+
+.tabActive:hover {
+  background: var(--accent);
+}
+
+/* Unread dot indicator */
+.unreadDot {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #c0392b;
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+  50% { opacity: 0.5; transform: translateX(-50%) scale(0.8); }
+}
+
+/* Hide on mobile */
+@media (max-width: 767px) {
+  .tabContainer {
+    display: none;
+  }
+}

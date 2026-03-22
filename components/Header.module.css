@@ -1,0 +1,324 @@
+.topLine {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  z-index: 200;
+}
+
+.header {
+  position: fixed;
+  top: 2px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--divider);
+  padding: 0 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  height: 70px;
+  /* No transform — avoids creating a stacking context that breaks fixed children */
+}
+
+.brand {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  color: var(--text);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logoIcon {
+  font-size: 22px;
+  line-height: 1;
+  margin-right: 6px;
+}
+
+.logoEmoji {
+  font-size: 1.3rem;
+  margin-right: 0.3rem;
+}
+
+.weather {
+  font-family: var(--font-serif);
+  font-size: inherit;
+  font-weight: inherit;
+  color: var(--text);
+  opacity: 0.45;
+  margin-left: 0.75rem;
+  letter-spacing: inherit;
+  white-space: nowrap;
+  filter: grayscale(1);
+}
+
+.weatherMobile {
+  font-family: var(--font-serif);
+  font-size: inherit;
+  font-weight: inherit;
+  color: var(--text);
+  opacity: 0.45;
+  margin-left: 0.5rem;
+  letter-spacing: inherit;
+  filter: grayscale(1);
+}
+
+/* ── Nav (desktop) ── */
+.nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.navItem {
+  font-family: var(--font-data);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+  opacity: 0.4;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  border-bottom: 1.5px solid transparent;
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+}
+
+.navItem:hover {
+  opacity: 0.7;
+}
+
+.navItemActive {
+  composes: navItem;
+  opacity: 1;
+  border-bottom-color: var(--accent);
+}
+
+/* ── Calendar toggle (desktop) ── */
+.calToggle {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: opacity 0.2s;
+}
+
+.calToggle:hover {
+  opacity: 0.7 !important;
+}
+
+.navDivider {
+  width: 1px;
+  height: 16px;
+  background: var(--divider);
+  margin: 0 0.25rem;
+}
+
+/* ── Mobile rows (hidden on desktop) ── */
+.mobileRow1,
+.mobileRow2 {
+  display: none;
+}
+
+.mobileBrand {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.mobileLeft {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.mobileNavArrows {
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+}
+
+.mobileRight {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.mobileTab {
+  font-family: var(--font-data);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+  opacity: 0.4;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0.2rem 0.35rem;
+  border-bottom: 1.5px solid transparent;
+}
+
+.mobileTab:first-child {
+  padding-left: 0;
+}
+
+.mobileTabActive {
+  composes: mobileTab;
+  opacity: 1;
+  border-bottom-color: var(--accent);
+}
+
+.arrowMobile {
+  font-size: 1rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--text);
+  opacity: 0.45;
+  padding: 0.1rem 0.15rem;
+  line-height: 1;
+}
+
+.todayBtnMobile {
+  font-family: var(--font-serif);
+  font-size: 0.78rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--accent);
+  padding: 0;
+  font-weight: 600;
+}
+
+.refreshBtnMobile {
+  font-size: 0.8rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--text);
+  opacity: 0.35;
+  padding: 0;
+}
+
+.calToggleMobile {
+  font-family: var(--font-serif);
+  font-size: 0.78rem;
+  color: var(--text);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: opacity 0.2s;
+}
+
+.mobileViewTabs {
+  display: none;
+}
+
+.mobileViewTab {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+  opacity: 0.35;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0.15rem 0.3rem;
+}
+
+.mobileViewTabActive {
+  composes: mobileViewTab;
+  opacity: 1;
+  color: var(--accent);
+}
+
+.editorialToggle {
+  font-family: var(--font-serif);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  opacity: 0.4;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: opacity 0.2s;
+}
+
+.editorialToggleActive {
+  composes: editorialToggle;
+  opacity: 1;
+  color: var(--accent);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ── Mobile ── */
+@media (max-width: 767px) {
+  .header {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 0.3rem 0.75rem;
+    gap: 0;
+    /* Ensure header stays fixed and doesn't slide with content */
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    transform: none;
+    -webkit-transform: none;
+    will-change: auto;
+  }
+
+  /* Hide desktop elements */
+  .brand,
+  .center,
+  .nav {
+    display: none;
+  }
+
+  /* Show mobile rows */
+  .mobileRow1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .mobileBrand {
+    font-size: 1.5rem;
+  }
+
+  .mobileViewTabs {
+    display: flex;
+    gap: 0.15rem;
+    align-items: center;
+  }
+
+  .mobileRow2 {
+    display: none;
+  }
+}

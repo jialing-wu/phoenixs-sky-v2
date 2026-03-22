@@ -1,0 +1,978 @@
+/* ── Captain's Log — Redesigned ─────────── */
+.container {
+  height: 100%;
+  overflow-y: auto;
+  padding: 1rem 2.5rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  color: var(--accent);
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  opacity: 0.85;
+}
+
+/* ── Year Progress ── */
+.yearProgress {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.4rem;
+}
+
+.yearProgressBar {
+  flex: 1;
+  height: 4px;
+  background: var(--divider);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.yearProgressFill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+.yearProgressLabel {
+  font-family: var(--font-data);
+  font-size: 0.6rem;
+  opacity: 0.4;
+  flex-shrink: 0;
+  letter-spacing: 0.04em;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ── Feather Edit Button ── */
+.featherEditBtn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: url('/feather-phoenix.svg') no-repeat center;
+  background-size: contain;
+  cursor: pointer;
+  opacity: 0.4;
+  transform: rotate(160deg);
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.featherEditBtn:hover {
+  opacity: 0.7;
+  transform: rotate(160deg) scale(1.15);
+}
+
+.featherEditBtnActive {
+  composes: featherEditBtn;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 4px rgba(139, 58, 42, 0.4));
+}
+
+/* ── Mode Toggle ── */
+.modeToggle { display: flex; gap: 0; }
+
+.modeBtn {
+  font-family: var(--font-data);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 4px 12px;
+  border: 1px solid rgba(139, 58, 42, 0.2);
+  background: transparent;
+  color: var(--text);
+  opacity: 0.45;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.modeBtn:first-child { border-radius: 4px 0 0 4px; }
+.modeBtn:last-child { border-radius: 0 4px 4px 0; }
+.modeBtn:not(:first-child) { border-left: none; }
+.modeBtn:hover { opacity: 0.7; background: rgba(139, 58, 42, 0.03); }
+
+.modeBtnActive {
+  composes: modeBtn;
+  opacity: 1;
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* ── Sections ── */
+.section {
+  margin-bottom: 1.5rem;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--divider);
+  margin-bottom: 0.6rem;
+  color: var(--text);
+  opacity: 0.7;
+}
+
+/* ── Nav Buttons ── */
+.navBtn {
+  font-size: 0.7rem;
+  background: none;
+  border: 1px solid rgba(139, 58, 42, 0.15);
+  border-radius: 4px;
+  padding: 3px 8px;
+  cursor: pointer;
+  color: var(--accent);
+  opacity: 0.5;
+  transition: all 0.15s;
+}
+.navBtn:hover { opacity: 0.8; background: rgba(139, 58, 42, 0.04); }
+
+/* ── Vision — Horizon Scrolls ── */
+.horizonCards {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.horizonScroll {
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.horizonScroll:hover {
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+}
+
+.horizonScrollRod {
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, #A0604A, #6B3020, #4A1A10, #6B3020, #A0604A);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+.horizonScrollBody {
+  background: #FAF6F0;
+  box-shadow: inset 2px 0 4px rgba(0,0,0,0.03), inset -2px 0 4px rgba(0,0,0,0.03);
+  padding: 0.5rem 0.65rem;
+}
+
+.horizonCardTitle {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.horizonCardLabel {
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  color: var(--text);
+  opacity: 0.8;
+}
+
+.horizonCardYears {
+  font-family: var(--font-data);
+  font-size: 0.55rem;
+  opacity: 0.35;
+  letter-spacing: 0.06em;
+}
+
+.horizonCardCount {
+  font-family: var(--font-data);
+  font-size: 0.52rem;
+  opacity: 0.3;
+  margin-left: auto;
+}
+
+.horizonCardBody {
+  margin-top: 0.4rem;
+  border-top: 1px solid rgba(0,0,0,0.04);
+  padding-top: 0.4rem;
+}
+
+/* ── Timeline Month Block ── */
+.monthBlock {
+  position: relative;
+  padding-left: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-left: 1px solid var(--divider);
+  margin-left: 4px;
+}
+
+.monthBlock:last-child {
+  border-left-color: transparent;
+}
+
+.monthPast {
+  opacity: 0.5;
+}
+
+.monthHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.monthDot {
+  position: absolute;
+  left: -1.55rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--divider);
+  border: 2px solid var(--bg, #FEFCF8);
+}
+
+.monthDotCurrent {
+  composes: monthDot;
+  background: var(--accent);
+  width: 10px;
+  height: 10px;
+  left: -1.6rem;
+}
+
+.monthLabel {
+  font-family: var(--font-data);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  opacity: 0.7;
+}
+
+.monthLabelCurrent {
+  composes: monthLabel;
+  color: var(--accent);
+  opacity: 1;
+}
+
+.monthCount {
+  font-family: var(--font-data);
+  font-size: 0.7rem;
+  opacity: 0.35;
+  margin-left: auto;
+}
+
+.monthContent {
+  padding-top: 0.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.yearGoalsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.6rem;
+  padding-top: 0.2rem;
+}
+
+/* ── Year Goals Scroll ── */
+.yearGoalsScroll {
+  margin-bottom: 1rem;
+}
+
+.yearGoalsScrollRod {
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, #A0604A, #6B3020, #4A1A10, #6B3020, #A0604A);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.15);
+  cursor: pointer;
+}
+
+.yearGoalsScrollBody {
+  background: #FAF6F0;
+  box-shadow: inset 3px 0 6px rgba(0,0,0,0.03), inset -3px 0 6px rgba(0,0,0,0.03);
+  padding: 0.7rem 1rem;
+}
+
+.yearGoalsScrollHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  margin-bottom: 0.5rem;
+}
+
+.yearGoalsScrollTitle {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: var(--text);
+  opacity: 0.8;
+}
+
+.yearGoalsScrollCount {
+  font-family: var(--font-data);
+  font-size: 0.7rem;
+  opacity: 0.4;
+  margin-left: auto;
+}
+
+.yearGoalsScrollChevron {
+  font-size: 0.65rem;
+  opacity: 0.35;
+}
+
+/* ── Current Badge ── */
+.currentBadge {
+  font-family: var(--font-data);
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.6;
+}
+
+/* ── Board Card (replaces boardRow) ── */
+.boardCard {
+  background: rgba(0, 0, 0, 0.015);
+  padding: 0.45rem 0.65rem;
+  transition: background 0.12s;
+}
+
+.boardCard:hover {
+  background: rgba(0, 0, 0, 0.025);
+}
+
+.boardCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.2rem;
+}
+
+.boardTag {
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.boardCardCount {
+  font-family: var(--font-data);
+  font-size: 0.65rem;
+  opacity: 0.35;
+  margin-left: auto;
+}
+
+.boardGoals {
+  min-width: 0;
+}
+
+/* ── Goal Item ── */
+.goalItem {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.12rem 0;
+  min-height: 1.3rem;
+}
+
+.goalCheckbox {
+  font-size: 0.7rem;
+  opacity: 0.3;
+  flex-shrink: 0;
+  width: 14px;
+  text-align: center;
+  line-height: 1;
+}
+
+.goalCheckboxDone {
+  composes: goalCheckbox;
+  opacity: 0.5;
+  color: var(--accent);
+}
+
+.goalText {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  line-height: 1.4;
+  cursor: pointer;
+  flex: 1;
+  color: var(--text);
+}
+
+.goalDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  opacity: 0.7;
+  align-self: flex-start;
+  margin-top: 0.45em;
+}
+
+.goalDone {
+  text-decoration: line-through;
+  opacity: 0.35;
+}
+
+.milestoneDone {
+  opacity: 0.5;
+}
+
+.pctBadge {
+  font-family: var(--font-data);
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: rgba(139, 58, 42, 0.06);
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.pctBadge:hover { background: rgba(139, 58, 42, 0.12); }
+
+.pctInput {
+  font-family: var(--font-data);
+  font-size: 0.6rem;
+  width: 3rem;
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  padding: 0.1rem 0.2rem;
+  background: transparent;
+  color: var(--text);
+  margin-left: auto;
+  text-align: right;
+}
+
+.pctInput:focus { outline: none; }
+
+.goalMonth {
+  font-family: var(--font-data);
+  font-size: 0.58rem;
+  opacity: 0.3;
+  flex-shrink: 0;
+}
+
+/* ── Week Columns ── */
+.weekColumn {
+  flex: 1;
+  min-width: 0;
+  background: rgba(0, 0, 0, 0.015);
+  padding: 0.5rem 0.6rem;
+  border-top: 2px solid var(--divider);
+}
+
+.weekColumnHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  margin-bottom: 0.4rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.weekColumnLabel {
+  font-family: var(--font-data);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text);
+  opacity: 0.7;
+}
+
+/* ── Vision Text ── */
+.visionText {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--text);
+  line-height: 1.5;
+  opacity: 0.6;
+}
+
+.visionText > div::before {
+  content: '\2022';
+  font-size: 0.5rem;
+  opacity: 0.4;
+  margin-right: 0.3rem;
+}
+
+/* ── Board Row (used in vision/week) ── */
+.boardRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--divider) 40%, transparent);
+}
+
+.boardRow:last-child {
+  border-bottom: none;
+}
+
+/* ── Year Summary Grid ── */
+.yearGrid {
+  display: flex;
+  gap: 0.3rem;
+  align-items: flex-end;
+  padding: 0.4rem 0;
+}
+
+.yearGridItem {
+  flex: 1;
+  text-align: center;
+  cursor: default;
+}
+
+.yearGridLabel {
+  font-family: var(--font-data);
+  font-size: 0.55rem;
+  font-weight: 700;
+  opacity: 0.5;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.03em;
+}
+
+.yearGridLabelCurrent {
+  composes: yearGridLabel;
+  color: var(--accent);
+  opacity: 1;
+}
+
+.yearGridBar {
+  height: 24px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.yearGridFill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--accent);
+  border-radius: 3px;
+  transition: height 0.4s ease;
+  opacity: 0.7;
+}
+
+.yearGridMilestones {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding-top: 1px;
+}
+
+.yearGridMilestone {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(139, 58, 42, 0.2);
+  flex-shrink: 0;
+}
+
+.yearGridMilestoneDone {
+  composes: yearGridMilestone;
+  background: var(--accent);
+  opacity: 0.8;
+}
+
+.yearGridIndicator {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 5px solid var(--accent);
+  margin: 3px auto 0;
+}
+
+.yearGridCount {
+  font-family: var(--font-data);
+  font-size: 0.5rem;
+  opacity: 0.45;
+  margin-top: 0.15rem;
+}
+
+/* ── Overview Board Grid ── */
+.overviewBoard {
+  margin-bottom: 1.2rem;
+}
+
+.overviewBoardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  border-left: 3px solid var(--accent);
+  margin-bottom: 0.4rem;
+}
+
+.overviewBoardTitle {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+.overviewMonthGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.35rem;
+  padding-left: 0.4rem;
+}
+
+.overviewMonthCell {
+  padding: 0.35rem 0.4rem;
+  background: rgba(0, 0, 0, 0.012);
+  min-height: 2.5rem;
+  transition: background 0.12s;
+}
+
+.overviewMonthCell:hover {
+  background: rgba(0, 0, 0, 0.025);
+}
+
+.overviewMonthCellCurrent {
+  background: rgba(139, 58, 42, 0.04);
+  border-left: 2px solid var(--accent);
+}
+
+.overviewMonthLabel {
+  font-family: var(--font-data);
+  font-size: 0.6rem;
+  font-weight: 700;
+  opacity: 0.4;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.03em;
+}
+
+.overviewGoalRow {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.06rem 0;
+}
+
+.overviewGoalText {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  line-height: 1.3;
+  cursor: pointer;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.overviewGoalText:hover {
+  white-space: normal;
+}
+
+.overviewEditInput {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  padding: 0.05rem 0.2rem;
+  background: transparent;
+  color: var(--text);
+  flex: 1;
+  min-width: 0;
+}
+
+.overviewEditInput:focus { outline: none; }
+
+/* ── Milestone Timeline ── */
+.milestoneItem {
+  position: relative;
+  padding-left: 1.4rem;
+  padding-bottom: 0.6rem;
+  border-left: 1px solid var(--divider);
+  margin-left: 6px;
+}
+
+.milestoneDot {
+  position: absolute;
+  left: -5px;
+  top: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--divider);
+  border: 2px solid var(--bg, #FEFCF8);
+}
+
+.milestoneDot[data-level="1"] { width: 14px; height: 14px; left: -7px; background: var(--accent); }
+.milestoneDot[data-level="2"] { width: 10px; height: 10px; background: rgba(139, 58, 42, 0.5); }
+.milestoneDot[data-level="3"] { width: 8px; height: 8px; left: -4px; background: rgba(139, 58, 42, 0.25); }
+
+.milestoneDotDone {
+  background: var(--accent) !important;
+  box-shadow: 0 0 4px rgba(139, 58, 42, 0.3);
+}
+
+.milestoneBody {
+  padding-top: 0.1rem;
+}
+
+.milestoneRow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.milestoneLevel {
+  font-size: 0.55rem;
+  color: var(--accent);
+  opacity: 0.6;
+  flex-shrink: 0;
+  min-width: 1.5rem;
+}
+
+.milestoneText {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  flex: 1;
+  cursor: pointer;
+}
+
+.milestoneDate {
+  font-family: var(--font-data);
+  font-size: 0.6rem;
+  opacity: 0.35;
+  flex-shrink: 0;
+}
+
+/* Milestone Add Form */
+.milestoneAddForm {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  margin-top: 0.5rem;
+  padding-left: 1.4rem;
+}
+
+.milestoneLevelSelect {
+  font-family: var(--font-data);
+  font-size: 0.65rem;
+  border: 1px solid var(--divider);
+  border-radius: 3px;
+  padding: 0.2rem 0.3rem;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.milestoneAddDate {
+  font-family: var(--font-data);
+  font-size: 0.65rem;
+  border: 1px solid var(--divider);
+  border-radius: 3px;
+  padding: 0.2rem 0.3rem;
+  background: transparent;
+  color: var(--text);
+}
+
+.milestoneAddText {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  border: none;
+  border-bottom: 1px dashed var(--divider);
+  padding: 0.15rem 0;
+  background: transparent;
+  color: var(--text);
+  flex: 1;
+}
+
+.milestoneAddText:focus { outline: none; border-bottom-color: var(--accent); }
+
+.milestoneAddBtn {
+  font-size: 0.85rem;
+  background: none;
+  border: 1px solid var(--divider);
+  border-radius: 3px;
+  padding: 0.1rem 0.5rem;
+  cursor: pointer;
+  color: var(--accent);
+  transition: all 0.12s;
+}
+
+.milestoneAddBtn:hover { background: rgba(139, 58, 42, 0.05); }
+
+/* Milestone Overview (bottom section) */
+.milestoneOverview {
+  padding-left: 0.4rem;
+}
+
+.milestoneOverviewItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+}
+
+.milestoneOverviewItem .milestoneDot {
+  position: static;
+  flex-shrink: 0;
+}
+
+.milestoneOverviewText {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  flex: 1;
+}
+
+/* ── Progress Bar (reusable) ── */
+.progressBar {
+  height: 2px;
+  background: var(--divider);
+  border-radius: 1px;
+  overflow: hidden;
+  margin-bottom: 0.2rem;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 1px;
+  background: var(--accent);
+  transition: width 0.4s ease;
+}
+
+/* ── Edit ── */
+.editArea textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--divider);
+  border-radius: 3px;
+  padding: 0.3rem 0.4rem;
+  resize: vertical;
+  line-height: 1.5;
+}
+.editArea textarea:focus { outline: none; border-color: var(--accent); }
+
+.editInput {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  padding: 0.1rem 0.3rem;
+  background: transparent;
+  color: var(--text);
+  width: 100%;
+}
+.editInput:focus { outline: none; }
+
+.deleteBtn {
+  flex-shrink: 0;
+  width: 16px; height: 16px;
+  border: none;
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  opacity: 0.3;
+  transition: opacity 0.12s;
+}
+.deleteBtn:hover { opacity: 0.7; }
+
+/* ── Add Goal / Week Add ── */
+.addGoalForm { margin-top: 0.1rem; }
+
+.addGoalInput {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  border: none;
+  border-bottom: 1px dashed var(--divider);
+  border-radius: 0;
+  padding: 0.15rem 0;
+  background: transparent;
+  color: var(--text);
+  width: 100%;
+}
+.addGoalInput:focus { outline: none; border-bottom-color: var(--accent); border-bottom-style: solid; }
+
+.weekAddForm { display: flex; width: 100%; margin-top: 0.1rem; }
+
+.weekAddInput {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  border: none;
+  border-bottom: 1px dashed var(--divider);
+  border-radius: 0;
+  padding: 0.15rem 0;
+  background: transparent;
+  color: var(--text);
+  width: 100%;
+}
+.weekAddInput:focus { outline: none; border-bottom-color: var(--accent); border-bottom-style: solid; }
+
+/* ── Loading / Empty ── */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-family: var(--font-body);
+  font-style: italic;
+  opacity: 0.3;
+}
+
+.emptyNote {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  opacity: 0.15;
+  padding: 0.2rem 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .container { padding: 0.8rem 1rem; }
+  .title { font-size: 1.2rem; }
+  .modeBtn { font-size: 0.6rem; padding: 2px 8px; }
+  .sectionHeader { font-size: 0.85rem; }
+  .goalText { font-size: 0.76rem; }
+  .boardTag { font-size: 0.58rem; }
+  .horizonCards { flex-direction: column; }
+
+  /* Overview month grid: 2 columns on mobile */
+  .overviewMonthGrid { grid-template-columns: repeat(2, 1fr); }
+  .overviewGoalText { font-size: 0.65rem; }
+  .overviewBoardTitle { font-size: 0.85rem; }
+
+  /* Milestone add form: wrap on mobile */
+  .milestoneAddForm { flex-wrap: wrap; }
+  .milestoneAddText { min-width: 100%; }
+}

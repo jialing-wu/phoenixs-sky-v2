@@ -1,0 +1,462 @@
+/* ── Letters View ─────────────────────────────── */
+.container {
+  height: 100%;
+  overflow-y: auto;
+  padding: 1.5rem 2.5rem;
+}
+
+.header {
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  color: var(--accent);
+}
+
+.subtitle {
+  font-family: var(--font-data);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-top: 0.2rem;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-family: var(--font-body);
+  font-style: italic;
+  opacity: 0.4;
+}
+
+.empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  font-family: var(--font-body);
+  font-style: italic;
+  opacity: 0.35;
+  font-size: 0.85rem;
+}
+
+/* ── Letter List ── */
+.letterList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+/* ── Letter Card (Scroll) ── */
+.letterCard {
+  overflow: hidden;
+  transition: all 0.25s ease;
+  background: #FAF6F0;
+  position: relative;
+  box-shadow: inset 3px 0 6px rgba(0,0,0,0.03), inset -3px 0 6px rgba(0,0,0,0.03);
+}
+
+.letterCard:hover {
+  box-shadow: inset 3px 0 6px rgba(0,0,0,0.03), inset -3px 0 6px rgba(0,0,0,0.03), 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.letterCardUnread {
+  composes: letterCard;
+}
+
+.letterCardOpen {
+  box-shadow: inset 3px 0 6px rgba(0,0,0,0.03), inset -3px 0 6px rgba(0,0,0,0.03), 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Scroll Rods ── */
+.scrollRod {
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, #A0604A, #6B3020, #4A1A10, #6B3020, #A0604A);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.15);
+  position: relative;
+  z-index: 1;
+}
+
+.scrollRodUnread {
+  composes: scrollRod;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.15), 0 0 8px rgba(139, 58, 42, 0.35);
+}
+
+.letterHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s;
+  min-height: 0;
+}
+
+.letterHeader:hover {
+  background: rgba(0, 0, 0, 0.015);
+}
+
+/* Agent avatar */
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  border: 1.5px solid;
+  font-family: var(--font-data);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.letterInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.letterTitle {
+  font-family: var(--font-data);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text);
+  border-bottom: 1px solid rgba(139, 58, 42, 0.2);
+  padding-bottom: 0.15rem;
+}
+
+.letterTitleUnread {
+  composes: letterTitle;
+  font-weight: 600;
+  border-bottom-color: var(--accent);
+}
+
+.letterTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.letterSender {
+  font-family: var(--font-data);
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  opacity: 0.5;
+}
+
+.letterTime {
+  font-family: var(--font-data);
+  font-size: 0.65rem;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.unreadIndicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ── Feather Seal (Ignore Button) ── */
+.ignoreBtn {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: url('/feather-phoenix.svg') no-repeat center;
+  background-size: contain;
+  cursor: pointer;
+  font-size: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s;
+  flex-shrink: 0;
+  position: relative;
+  opacity: 0.6;
+  transform: rotate(160deg);
+  margin: -4px -2px -4px 0;
+}
+
+.ignoreBtn:hover {
+  opacity: 1;
+  transform: rotate(160deg) scale(1.2);
+}
+
+.ignoreBtn:active {
+  animation: featherDrift 0.4s ease forwards;
+}
+
+@keyframes featherDrift {
+  0% { opacity: 0.75; transform: rotate(160deg); }
+  50% { opacity: 0.35; transform: rotate(180deg) scale(0.8) translateY(-6px); }
+  100% { opacity: 0.12; transform: rotate(200deg) scale(0.5) translateY(-12px); }
+}
+
+.sealBroken {
+  width: 44px;
+  height: 44px;
+  background: url('/feather-phoenix.svg') no-repeat center;
+  background-size: contain;
+  flex-shrink: 0;
+  opacity: 0.12;
+  transform: rotate(160deg);
+  margin: -10px -8px -10px 0;
+}
+
+/* ── Stamp Title ── */
+
+.chevron {
+  font-size: 0.7rem;
+  opacity: 0.3;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.chevronOpen {
+  composes: chevron;
+  transform: rotate(180deg);
+}
+
+/* ── Expanded Content (Letter Paper) ── */
+.letterBody {
+  padding: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.letterContent {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-style: italic;
+  line-height: 1.9;
+  padding: 1rem 1.2rem;
+  white-space: pre-wrap;
+  background:
+    linear-gradient(rgba(245, 240, 225, 0.4), rgba(245, 240, 225, 0.4)),
+    repeating-linear-gradient(
+      transparent,
+      transparent 1.71em,
+      rgba(139, 58, 42, 0.06) 1.71em,
+      rgba(139, 58, 42, 0.06) calc(1.71em + 1px)
+    );
+  background-size: 100% 100%, 100% 1.9em;
+  background-position: 0 0, 0 0.95em;
+  color: rgba(26, 26, 26, 0.75);
+}
+
+/* ── Letter Items ── */
+.itemsSection {
+  margin-top: 0.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+  padding-top: 0.5rem;
+}
+
+.itemsSectionLabel {
+  font-family: var(--font-data);
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-bottom: 0.3rem;
+}
+
+.itemRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  padding: 0.4rem 0.3rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+  cursor: context-menu;
+}
+
+.itemRow:last-child {
+  border-bottom: none;
+}
+
+.itemStatusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+.itemStatusDot[data-status="pending"] {
+  background: #B8860B;
+  opacity: 0.6;
+}
+
+.itemStatusDot[data-status="accepted"] {
+  background: #2E6B4F;
+}
+
+.itemStatusDot[data-status="modified"] {
+  background: #2D5F7C;
+}
+
+.itemStatusDot[data-status="ignored"] {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.itemText {
+  flex: 1;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  min-width: 0;
+}
+
+.itemAgent {
+  font-family: var(--font-data);
+  font-size: 0.5rem;
+  opacity: 0.4;
+  flex-shrink: 0;
+}
+
+/* ── Context Menu ── */
+.itemContextMenu {
+  position: fixed;
+  background: var(--bg);
+  border: 1.5px solid #B8860B;
+  border-radius: 8px;
+  padding: 0.4rem;
+  box-shadow: 0 4px 16px rgba(184, 134, 11, 0.15);
+  z-index: 100;
+  min-width: 140px;
+}
+
+.agentGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: 0.3rem;
+}
+
+.agentGridBtn {
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid #B8860B;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.12s;
+}
+
+.agentGridBtn:hover {
+  background: rgba(184, 134, 11, 0.08);
+}
+
+.contextMenuLabel {
+  font-family: var(--font-data);
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-bottom: 0.3rem;
+  padding: 0 0.3rem;
+}
+
+.agentOption {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.5rem;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--text);
+  transition: background 0.1s;
+}
+
+.agentOption:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.agentOptionEmoji {
+  font-size: 0.7rem;
+  width: 20px;
+  text-align: center;
+}
+
+.contextDivider {
+  height: 1px;
+  background: var(--divider);
+  margin: 0.3rem 0;
+}
+
+.noteInput {
+  width: 100%;
+  padding: 0.3rem 0.4rem;
+  border: 1px solid var(--divider);
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  background: transparent;
+  color: var(--text);
+  outline: none;
+  margin-top: 0.2rem;
+}
+
+.noteInput:focus {
+  border-color: var(--accent);
+}
+
+.noteInput::placeholder {
+  opacity: 0.3;
+}
+
+/* ── Ignored Section ── */
+.ignoredSection {
+  margin-top: 1.5rem;
+}
+
+.ignoredToggle {
+  font-family: var(--font-data);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  opacity: 0.4;
+  background: none;
+  border: none;
+  border-top: 1px solid var(--divider);
+  cursor: pointer;
+  padding: 0.6rem 0;
+  width: 100%;
+  text-align: left;
+  transition: opacity 0.15s;
+}
+
+.ignoredToggle:hover {
+  opacity: 0.5;
+}
+
+.ignoredList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1rem;
+  align-items: start;
+  margin-top: 0.5rem;
+  opacity: 0.5;
+}

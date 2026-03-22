@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+  <!-- 凤凰羽 - 红橙金渐变 -->
+  <defs>
+    <linearGradient id="phoenix" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="40%" stop-color="#FF6B00"/>
+      <stop offset="100%" stop-color="#CC2200"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="0.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <path d="M21 2C17 4 13 8 9 13C6 17 4 20 3 23L2 21C5 16 8 11 12 7C16 4 19 3 21 2Z" fill="url(#phoenix)" opacity="0.9" filter="url(#glow)"/>
+  <path d="M21 2C19 5 15 10 11 15C8 18 5 21 3 23L4 23C7 19 10 15 14 11C17 7 20 4 21 2Z" fill="#FF8C00" opacity="0.5"/>
+  <line x1="21" y1="2" x2="3" y2="23" stroke="#CC4400" stroke-width="0.6" opacity="0.6"/>
+  <path d="M17 5C13 10 10 14 7 18" stroke="#FFD700" stroke-width="0.4" fill="none" opacity="0.5"/>
+  <path d="M14 8C11 12 9 15 6 19" stroke="#FFD700" stroke-width="0.3" fill="none" opacity="0.3"/>
+</svg>
