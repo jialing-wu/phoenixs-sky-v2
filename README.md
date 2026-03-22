@@ -1,4 +1,4 @@
-# Phoenix's Sky
+# Phoenix's Sky v2
 
 An agent-native calendar you can fully customize with AI.
 
